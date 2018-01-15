@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>React-Native 消息推送--Android混合推送 | 有恒则成</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+	<script type="text/javascript" src="https://tajs.qq.com/stats?sId=64969916" charset="UTF-8"></script>
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background:transparent url(https://github.com/wangheng3751/my-resources/blob/master/images/blog-banner.jpg?raw=true) no-repeat;background-size:cover"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 有恒则成 </h2>
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/格言/"><i class="fa fa-fw "></i>格言</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React-Native 消息推送--Android混合推送">
+            
+	            React-Native 消息推送--Android混合推送
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            React-Native
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/01/09</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>由于使用任何一种Android推送都很难在APP进程被杀死后收到推送，只有集成各厂商提供的系统级别推送才能完成此任务,故考虑小米、华为、魅族手机使用官方推送，其他手机使用个推推送！</p>
+<p>项目GitHub地址：</p>
+<p><a href="https://github.com/wangheng3751/react-native-mixpush" target="_blank" rel="noopener">https://github.com/wangheng3751/react-native-mixpush</a></p>
+<h1 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h1><pre><code>npm install --save react-native-mixpush-android
+</code></pre><h1 id="配置使用："><a href="#配置使用：" class="headerlink" title="配置使用："></a>配置使用：</h1><h2 id="1、配置android-settings-gradle"><a href="#1、配置android-settings-gradle" class="headerlink" title="1、配置android/settings.gradle"></a>1、配置android/settings.gradle</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">include &apos;:react-native-mixpush-android&apos;</span><br><span class="line">project(&apos;:react-native-mixpush-android&apos;).projectDir = new File(rootProject.projectDir, &apos;../node_modules/react-native-mixpush-android&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="2、配置app-build-gradle"><a href="#2、配置app-build-gradle" class="headerlink" title="2、配置app/build.gradle"></a>2、配置app/build.gradle</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">manifestPlaceholders = [</span><br><span class="line">        PACKAGE_NAME : &quot;你的包名&quot;,</span><br><span class="line">        //测试环境</span><br><span class="line">        GETUI_APP_ID : &quot;个推APPID&quot;,</span><br><span class="line">        GETUI_APP_KEY : &quot;个推APPKEY&quot;,</span><br><span class="line">        GETUI_APP_SECRET : &quot;个推APPSECRE&quot;</span><br><span class="line">]</span><br><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    compile project(&quot;:react-native-mixpush-android&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、配置android-build-gradle"><a href="#3、配置android-build-gradle" class="headerlink" title="3、配置android/build.gradle"></a>3、配置android/build.gradle</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">         repositories &#123;</span><br><span class="line">             mavenLocal()</span><br><span class="line">             jcenter()</span><br><span class="line">             ...</span><br><span class="line">             //个推</span><br><span class="line">             maven &#123;</span><br><span class="line">                 url &quot;http://mvn.gt.igexin.com/nexus/content/repositories/releases/&quot;</span><br><span class="line">             &#125;</span><br><span class="line">             //华为推送</span><br><span class="line">             maven &#123;url &apos;http://developer.huawei.com/repo/&apos;&#125;</span><br><span class="line">         &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、配置AndroidManifest-xml"><a href="#4、配置AndroidManifest-xml" class="headerlink" title="4、配置AndroidManifest.xml"></a>4、配置AndroidManifest.xml</h2><h3 id="manifest节点下添加："><a href="#manifest节点下添加：" class="headerlink" title="manifest节点下添加："></a>manifest节点下添加：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--小米推送--&gt;</span><br><span class="line"> &lt;permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.permission.MIPUSH_RECEIVE&quot; android:protectionLevel=&quot;signature&quot; /&gt;</span><br><span class="line"> &lt;uses-permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.permission.MIPUSH_RECEIVE&quot; /&gt;</span><br><span class="line"> &lt;!--小米推送END--&gt;</span><br><span class="line"></span><br><span class="line"> &lt;!--魅族推送--&gt;</span><br><span class="line"> &lt;!-- 兼容flyme5.0以下版本，魅族内部集成pushSDK必填，不然无法收到消息--&gt;</span><br><span class="line"> &lt;uses-permission android:name=&quot;com.meizu.flyme.push.permission.RECEIVE&quot;&gt;&lt;/uses-permission&gt;</span><br><span class="line"> &lt;permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.push.permission.MESSAGE&quot; android:protectionLevel=&quot;signature&quot;/&gt;</span><br><span class="line"> &lt;uses-permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.push.permission.MESSAGE&quot;&gt;&lt;/uses-permission&gt;</span><br><span class="line"> &lt;!--  兼容flyme3.0配置权限--&gt;</span><br><span class="line"> &lt;uses-permission android:name=&quot;com.meizu.c2dm.permission.RECEIVE&quot; /&gt;</span><br><span class="line"> &lt;permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.permission.C2D_MESSAGE&quot;</span><br><span class="line">     android:protectionLevel=&quot;signature&quot;&gt;&lt;/permission&gt;</span><br><span class="line"> &lt;uses-permission android:name=&quot;$&#123;PACKAGE_NAME&#125;.permission.C2D_MESSAGE&quot;/&gt;</span><br><span class="line"> &lt;!--魅族推送END--&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="application节点下添加："><a href="#application节点下添加：" class="headerlink" title="application节点下添加："></a>application节点下添加：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--华为推送配置begin--&gt;</span><br><span class="line">&lt;meta-data   android:name=&quot;com.huawei.hms.client.appid&quot;  android:value=&quot;你的华为推送APPID&quot;/&gt;</span><br><span class="line">&lt;provider android:name=&quot;com.huawei.hms.update.provider.UpdateProvider&quot;</span><br><span class="line">    android:authorities=&quot;$&#123;PACKAGE_NAME&#125;.hms.update.provider&quot;</span><br><span class="line">    android:exported=&quot;false&quot;</span><br><span class="line">    android:grantUriPermissions=&quot;true&quot; &gt;</span><br><span class="line">&lt;/provider&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="5、注册推送"><a href="#5、注册推送" class="headerlink" title="5、注册推送"></a>5、注册推送</h2><h3 id="MainApplication中引用组件："><a href="#MainApplication中引用组件：" class="headerlink" title="MainApplication中引用组件："></a>MainApplication中引用组件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import com.duanglink.rnmixpush.MixPushReactPackage;</span><br><span class="line"></span><br><span class="line">protected List&lt;ReactPackage&gt; getPackages() &#123;</span><br><span class="line">        return Arrays.&lt;ReactPackage&gt;asList(</span><br><span class="line">            new MainReactPackage(),</span><br><span class="line">            ...</span><br><span class="line">            new MixPushReactPackage()</span><br><span class="line">        );</span><br><span class="line">      &#125;</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="MainActivity中注册推送："><a href="#MainActivity中注册推送：" class="headerlink" title="MainActivity中注册推送："></a>MainActivity中注册推送：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import com.duanglink.huaweipush.HuaweiPushActivity;</span><br><span class="line">  </span><br><span class="line">//特别注意：此处继承HuaweiPushActivity </span><br><span class="line">public class MainActivity extends HuaweiPushActivity &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">          if(savedInstanceState==null)&#123;</span><br><span class="line">              savedInstanceState=new Bundle();</span><br><span class="line">          &#125;</span><br><span class="line">          savedInstanceState.putString(&quot;meizuAppId&quot;,&quot;魅族AppId&quot;);</span><br><span class="line">          savedInstanceState.putString(&quot;meizuAppKey&quot;,&quot;魅族AppKey&quot;);</span><br><span class="line">          savedInstanceState.putString(&quot;xiaomiAppId&quot;,&quot;小米AppId&quot;);</span><br><span class="line">          savedInstanceState.putString(&quot;xiaomiAppKey&quot;,&quot;小米AppKey&quot;);</span><br><span class="line">          super.onCreate(savedInstanceState);</span><br><span class="line">      &#125;</span><br><span class="line">      ...</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="6、React-Native客户端接收事件："><a href="#6、React-Native客户端接收事件：" class="headerlink" title="6、React-Native客户端接收事件："></a>6、React-Native客户端接收事件：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var &#123; NativeAppEventEmitter &#125; = require(&apos;react-native&apos;);</span><br><span class="line">NativeAppEventEmitter.addListener(</span><br><span class="line">            &apos;receiveRemoteNotification&apos;,</span><br><span class="line">            (notification) =&gt; &#123;</span><br><span class="line">                    Alert.alert(&apos;消息通知&apos;,JSON.stringify(notification));</span><br><span class="line">            &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="7、React-Native客户端方法说明："><a href="#7、React-Native客户端方法说明：" class="headerlink" title="7、React-Native客户端方法说明："></a>7、React-Native客户端方法说明：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import MixPush from &apos;react-native-mixpush-android&apos;;</span><br><span class="line">- MixPush.setAlias(alias); //设置别名</span><br><span class="line">- MixPush.unsetAlias(alias); //取消设置别名</span><br><span class="line">- MixPush.setTags(tags); //设置用户标签</span><br><span class="line">- MixPush.unsetTags(tags); //取消设置用户标签</span><br><span class="line">- MixPush.getClientId(); //获取客户端ID</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上方法均不支持华为手机</p>
+</blockquote>
+<p>说明：getClientId获取到的ID为用户在推送平台的唯一标识（小米：regId，魅族：pushId;个推：clientId），用于定向推送;</p>
+<p>此外,所有推送平台在APP推送注册成功后会往客户端发送一次注册成功事件(包含华为:deviceToken)，事件名为:”receiveClientId”,并携带clientId,可使用该事件与getClientId方法配合使用达到获取clientId的目的。</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    //主动获取&lt;br&gt;</span><br><span class="line">    MixPush.getClientId((cid)=&gt;&#123;</span><br><span class="line">       alert(&quot;cid:&quot;+cid);//自行处理cid代码</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">    //监听事件&lt;br&gt;</span><br><span class="line">    NativeAppEventEmitter.addListener(</span><br><span class="line">    &apos;receiveClientId&apos;,</span><br><span class="line">    (cid) =&gt; &#123;</span><br><span class="line">         alert(&quot;cid:&quot;+cid);//自行处理cid代码</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>后台推送使用各平台后台管理系统或自行集成SDK。</p>
+<blockquote>
+<p>项目QQ交流群：516032289</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/01/12/take-picture/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2018/01/02/react-native-component/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>个人博客正在建设中~~</br>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/wangheng3751" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KB4RGxkQHB0aEGhZWQZLR0U" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="http://wpa.qq.com/msgrd?v=3&uin=693184528&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="https://jq.qq.com/?_wv=1027&k=5j2JBvV" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/格言/"><i class="fa" aria-hidden="true">格言</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">6</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/React-Native/" style="font-size: 20px;">React-Native</a> <a href="/tags/人生感悟/" style="font-size: 10px;">人生感悟</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/95064c5d51c7" class="fa" target="_blank">我的简书</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    有恒则成
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
