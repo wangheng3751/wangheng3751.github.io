@@ -182,10 +182,7 @@
 </ul>
 <p>说明：出现安装驱动后运行脚本提示驱动不正常之类的问题时可自行下载驱动放到与脚本相同的目录下试试。驱动下载地址：<a href="http://www.seleniumhq.org/download/" target="_blank" rel="noopener">http://www.seleniumhq.org/download/</a></p>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h4 id="一-初始化"><a href="#一-初始化" class="headerlink" title="一.初始化"></a>一.初始化</h4><p>初始化一个浏览器并打开一个网页，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var webdriver = require(&apos;selenium-webdriver&apos;);</span><br><span class="line">var driver = new webdriver.Builder()</span><br><span class="line">    .forBrowser(&apos;ie&apos;)</span><br><span class="line">    .build();</span><br><span class="line">driver.get(&apos;http://www.baidu.com&apos;);</span><br></pre></td></tr></table></figure></p>
-<h4 id="二-常用方法"><a href="#二-常用方法" class="headerlink" title="二.常用方法"></a>二.常用方法</h4><ol>
-<li>元素定位</li>
-</ol>
-<ul>
+<h4 id="二-常用方法"><a href="#二-常用方法" class="headerlink" title="二.常用方法"></a>二.常用方法</h4><h5 id="1-元素定位"><a href="#1-元素定位" class="headerlink" title="1.元素定位"></a>1.元素定位</h5><ul>
 <li><p>根据id定位</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;ID&apos;))；//类似于jquery的$(&quot;#id&quot;)</span><br></pre></td></tr></table></figure>
 </li>
@@ -195,35 +192,15 @@
 <li><p>更多定位方式可参考：<a href="http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_By.html" target="_blank" rel="noopener">http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_By.html</a></p>
 </li>
 </ul>
-<ol>
-<li><p>设置元素的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;ID&apos;)).sendKeys(&apos;value&apos;);//类似于jquery的$(&quot;.id&quot;).val(&quot;value&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>清空元素的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;id&apos;)).clear();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>单击按钮</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;id&apos;)).click();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>元素等待<br>有时对一些元素需要等待页面跳转或操作完成才会显示，如果操作耗时或者网络原因，如果该元素还没出现就进行操作可能会跑出异常，这是我们需要设置一些等待，等待该元素出现在页面上时才能进行操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var until = webdriver.until;</span><br><span class="line">driver.wait(until.elementLocated(By.id(&apos;id&apos;), 10000));</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>程序睡眠<br>睡眠功能解决的问题和元素等待类似，更推荐使用元素等待方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.sleep(500);//毫秒</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行JavaScript<br>在网页上运行一段javascript,此方法在selenium的使用中非常有用，当有些时候某个元素是在难以获取时，可使用该方法直接触发该元素本身的操作，例如某个按钮点击后执行网页跳转，但是我们难以定位该元素时可以直接使用以下方式跳转：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.executeScript(&apos;location.href=&quot;/xx.html&quot; &apos;);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<h5 id="2-设置元素的值"><a href="#2-设置元素的值" class="headerlink" title="2.设置元素的值"></a>2.设置元素的值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;ID&apos;)).sendKeys(&apos;value&apos;);//类似于jquery的$(&quot;.id&quot;).val(&quot;value&quot;);</span><br></pre></td></tr></table></figure>
+<h5 id="3-清空元素的值"><a href="#3-清空元素的值" class="headerlink" title="3.清空元素的值"></a>3.清空元素的值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;id&apos;)).clear();</span><br></pre></td></tr></table></figure>
+<h5 id="4-单击按钮"><a href="#4-单击按钮" class="headerlink" title="4.单击按钮"></a>4.单击按钮</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.id(&apos;id&apos;)).click();</span><br></pre></td></tr></table></figure>
+<h5 id="5-元素等待"><a href="#5-元素等待" class="headerlink" title="5.元素等待"></a>5.元素等待</h5><p>有时对一些元素需要等待页面跳转或操作完成才会显示，如果操作耗时或者网络原因，如果该元素还没出现就进行操作可能会跑出异常，这是我们需要设置一些等待，等待该元素出现在页面上时才能进行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var until = webdriver.until;</span><br><span class="line">driver.wait(until.elementLocated(By.id(&apos;id&apos;), 10000));</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h5 id="6-程序睡眠"><a href="#6-程序睡眠" class="headerlink" title="6.程序睡眠"></a>6.程序睡眠</h5><p>睡眠功能解决的问题和元素等待类似，更推荐使用元素等待方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.sleep(500);//毫秒</span><br></pre></td></tr></table></figure></p>
+<h5 id="7-执行JavaScript"><a href="#7-执行JavaScript" class="headerlink" title="7.执行JavaScript"></a>7.执行JavaScript</h5><p>在网页上运行一段javascript,此方法在selenium的使用中非常有用，当有些时候某个元素是在难以获取时，可使用该方法直接触发该元素本身的操作，例如某个按钮点击后执行网页跳转，但是我们难以定位该元素时可以直接使用以下方式跳转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.executeScript(&apos;location.href=&quot;/xx.html&quot; &apos;);</span><br></pre></td></tr></table></figure></p>
 <p>或者需要给元素设置值时可以使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.executeScript(&apos;document.getElementById(&quot;id&quot;).value=&quot;value&quot;&apos;);//$(&quot;#id&quot;).val(&quot;value&quot;);</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li><p>执行JavaScript并获取返回值<br>在网页上运行JavaScript还可返回值，以供我们自动运行程序调用做出一些判断，比如可以检查网页上的某个值大于100做某种操作，小于100做另外一种操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">driver.executeScript(&apos;return $(&quot;#id&quot;).val()&apos;).then(function(obj)&#123;</span><br><span class="line">    //obj即为返回值</span><br><span class="line">    if(obj&gt;100)&#123;</span><br><span class="line">        //操作</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">       //其他操作</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>切换作用域（switchTo）</p>
-</li>
-</ol>
-<ul>
+<h5 id="8-执行JavaScript并获取返回值"><a href="#8-执行JavaScript并获取返回值" class="headerlink" title="8.执行JavaScript并获取返回值"></a>8.执行JavaScript并获取返回值</h5><p>在网页上运行JavaScript还可返回值，以供我们自动运行程序调用做出一些判断，比如可以检查网页上的某个值大于100做某种操作，小于100做另外一种操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">driver.executeScript(&apos;return $(&quot;#id&quot;).val()&apos;).then(function(obj)&#123;</span><br><span class="line">    //obj即为返回值</span><br><span class="line">    if(obj&gt;100)&#123;</span><br><span class="line">        //操作</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">       //其他操作</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="9-切换作用域（switchTo）"><a href="#9-切换作用域（switchTo）" class="headerlink" title="9.切换作用域（switchTo）"></a>9.切换作用域（switchTo）</h5><ul>
 <li><p>切换到iframe<br>网页中常常会嵌入一些iframe，或者是标签页面或者是弹窗的形式。这是要操作iframe里面的元素前就需把当前的作用域切换到iframe，切换后在切换会主页面前所有的操作都是针对iframe，在iframe内的操作结束后需切换回主页面。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switchTo().frame(driver.findElement(By.id(&quot;iframe-id&quot;)));  //iframe-id为iframe元素的id</span><br></pre></td></tr></table></figure>
 </li>
@@ -234,20 +211,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.switchTo().defaultContent();</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<ol>
-<li><p>网页最大化（全屏）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.manage().window().maximize();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>网页截图(定位)<br>网页截图看上去很简单，就一行代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.takeScreenshot()；</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<h5 id="10-网页最大化（全屏）"><a href="#10-网页最大化（全屏）" class="headerlink" title="10.网页最大化（全屏）"></a>10.网页最大化（全屏）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.manage().window().maximize();</span><br></pre></td></tr></table></figure>
+<h5 id="11-网页截图-定位"><a href="#11-网页截图-定位" class="headerlink" title="11.网页截图(定位)"></a>11.网页截图(定位)</h5><p>网页截图看上去很简单，就一行代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.takeScreenshot()；</span><br></pre></td></tr></table></figure></p>
 <p>截图后的结果为base64格式，可自行处理。类似这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">driver.takeScreenshot().then(function(d)&#123;</span><br><span class="line">    //此处d即为截图结果base64字符串，可在此自行处理</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>但是往往在实际应用中可能我们不需要一整个网页图片，我们值需要某部分的图片，这时候就需要换种方式了。<br>在网上找到了一些信息（已不记得出处）后做了整理和亲测后记录如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">driver.findElement(By.className(&apos;yanzheng&apos;)).then(function(obj)&#123;</span><br><span class="line">        obj.getSize().then(function(size)&#123;          </span><br><span class="line">            obj.getLocation().then(function(loc)&#123;</span><br><span class="line">                driver.takeScreenshot().then(function(d)&#123;</span><br><span class="line">                      var data=&#123;</span><br><span class="line">                            d:d,</span><br><span class="line">                            width:size.width,</span><br><span class="line">                            height:size.height,</span><br><span class="line">                            x:loc.x,</span><br><span class="line">                            y:loc.y</span><br><span class="line">                      &#125;;</span><br><span class="line">                    //此处省略以下两步</span><br><span class="line">                    //1.提交data信息到服务器处理图片</span><br><span class="line">                    //2.先根据d获取整张图片信息，再根据需要截取的元素的其实位置x,y以及长宽width,height截取相应的图片</span><br><span class="line">                &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>退出程序（关闭网页）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.quit();</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<h5 id="12-退出程序（关闭网页）"><a href="#12-退出程序（关闭网页）" class="headerlink" title="12.退出程序（关闭网页）"></a>12.退出程序（关闭网页）</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver.quit();</span><br></pre></td></tr></table></figure>
 <p>更多详细文档可参考官方文档：<a href="http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/" target="_blank" rel="noopener">http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/</a></p>
 
     </div>
