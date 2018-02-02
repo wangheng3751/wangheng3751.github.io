@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>React-Native 开发篇一React-Native+Redux开发框架搭建 | 有恒则成</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+	<script type="text/javascript" src="https://tajs.qq.com/stats?sId=64969916" charset="UTF-8"></script>
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background:transparent url(https://github.com/wangheng3751/my-resources/blob/master/images/blog-banner.jpg?raw=true) no-repeat;background-size:cover"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 学问之道无穷，而总以有「恒」为主 </h2>
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/格言/"><i class="fa fa-fw "></i>格言</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/成长日记/"><i class="fa fa-fw "></i>成长日记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React-Native 开发篇一React-Native+Redux开发框架搭建">
+            
+	            React-Native 开发篇一React-Native+Redux开发框架搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            React-Native
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/02/02</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>前言：从事react-native开发一年半的时间了，从最初的0.17版本开始接触react-native到现在的0.51稳定版，期间从一开始的看着官方文档自我摸索到后来的渐渐社区庞大，各种组件层出不穷，react-native虽然越发成熟，然而大版本的改动，新技术的更替往往让人措手不及，从一开始的单页面涵盖组件，状态以及后台交互代码，到后来的组件拆分，说不上那种更好，但往往我们习惯学习大部分人的想法，接触了一段时间的redux之后，远远不及精通，甚至有时候只是知其然而不知其所以然，然而生活总有新的东西要去做，最近要去搞vue了，避免新的东西取代大脑里面旧的东西，暂切在此记录以下react-native开发过程中的一些经验和总结，以便以后查阅。本文记录使用redux状态管理机制来配合react-native开发的一些过程。</p>
+<h3 id="一-项目初始化"><a href="#一-项目初始化" class="headerlink" title="一.项目初始化"></a>一.项目初始化</h3><p>react-native init reduxDemo</p>
+<p>初始化完成后控制台输出如下信息：<br><img src="http://upload-images.jianshu.io/upload_images/9814928-f66072ccd1f59094.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="二-依赖安装"><a href="#二-依赖安装" class="headerlink" title="二. 依赖安装"></a>二. 依赖安装</h3><p>必须依赖项：</p>
+<ul>
+<li>npm install redux –save</li>
+<li>npm install react-redux –save</li>
+<li>npm install redux-thunk –save</li>
+</ul>
+<p>扩展依赖：</p>
+<ul>
+<li>npm install immutable –save</li>
+<li>npm install react-native-router-flux –save<h3 id="三-项目结构"><a href="#三-项目结构" class="headerlink" title="三.项目结构"></a>三.项目结构</h3><img src="http://upload-images.jianshu.io/upload_images/9814928-afcc8963d9f522b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>src-项目文件总文件夹。<br>– src/modules-项目模块文件夹，按模块规划建立子文件夹，按每个模块划分项的state,reducer和action,(问题：按模块划分还是页面单独划分为好？)如登录授权模块为auth。<br>— src/modules/auth-登录授权模块。<br>– src/resource-整个项目资源文件，多为图片，问题：资源文件是放置到相应的模块文件夹下还是在此处统一管理，那种较好？不知道，大概各有各的好吧。<br>–src/actionTypes.js-整个项目操作定义。<br>–src/appState.js-整个项目状态统一管理。<br>–src/actionStore.js-state中间件。<br>–src/actionReducer.js-整个项目reducer 统一管理。<br>–src/actionRoot.js-项目路由管理。<h3 id="四-核心代码"><a href="#四-核心代码" class="headerlink" title="四.核心代码"></a>四.核心代码</h3></li>
+</ul>
+<ol>
+<li>appState.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import authState from &apos;./modules/auth/authState&apos;;</span><br><span class="line"></span><br><span class="line">export default function getAppState () &#123;</span><br><span class="line">  const appState = &#123;</span><br><span class="line">    auth: new authState()</span><br><span class="line">    //...其他模块State</span><br><span class="line">  &#125;</span><br><span class="line">  return appState;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>备注：整个APP状态汇总，开发时定义在各个模块下，此处由各个模块文件引入做统一管理。</p>
+</blockquote>
+<p>2.appTypes.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export const LOGIN_SUCCESS 	= &apos;LOGIN_SUCCESS&apos;;//登录成功</span><br><span class="line">export const LOGIN_FAILURE 	= &apos;LOGIN_FAILURE&apos;;//登录失败</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>备注：reducer中更新状态使用。</p>
+</blockquote>
+<p>3.appReducer.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import auth from &apos;./modules/auth/authReducer&apos;;</span><br><span class="line">import &#123; combineReducers &#125; from &apos;redux&apos;;</span><br><span class="line"></span><br><span class="line">const appReducer = combineReducers(&#123;</span><br><span class="line">    auth</span><br><span class="line">    //...其他模块reducer</span><br><span class="line">&#125;);</span><br><span class="line">export default appReducer;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>备注：整个APP Reducer汇总，开发时定义在各个模块下，此处由各个模块文件引入做统一管理。</p>
+</blockquote>
+<p>4.appStore.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore, applyMiddleware &#125; from &apos;redux&apos;;</span><br><span class="line">import thunk from &apos;redux-thunk&apos;;</span><br><span class="line">import reducer from &apos;./appReducer&apos;;</span><br><span class="line">import getAppState from &apos;./appState&apos;;</span><br><span class="line"></span><br><span class="line">const createStoreWithMiddleware = applyMiddleware(thunk) (createStore);</span><br><span class="line"></span><br><span class="line">function configureStore (initialState) &#123;</span><br><span class="line">    return createStoreWithMiddleware(reducer, initialState);</span><br><span class="line">&#125;</span><br><span class="line">var appStore=configureStore(getAppState());</span><br><span class="line">export default appStore;</span><br></pre></td></tr></table></figure></p>
+<p>5.appRoot.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">    View,</span><br><span class="line">    Text,</span><br><span class="line">    BackAndroid</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst &#125; from &apos;react-native-router-flux&apos;;</span><br><span class="line">import LoginPage from &apos;./modules/auth/containers/loginPage&apos;;</span><br><span class="line"></span><br><span class="line">export default class AppRoot extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    createReducer(params) &#123;</span><br><span class="line">        const defaultReducer = Reducer(params);</span><br><span class="line">        return (state, action) =&gt; &#123;</span><br><span class="line">          this.props.dispatch(action);</span><br><span class="line">          return defaultReducer(state, action);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onExitApp()&#123;</span><br><span class="line">        BackAndroid.exitApp();</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;Router onExitApp=&#123;this.onExitApp&#125; </span><br><span class="line">                    createReducer=&#123; this.createReducer &#125;</span><br><span class="line">                    scenes=&#123; scenes &#125;</span><br><span class="line">             &gt;          </span><br><span class="line">            &lt;/Router &gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const scenes = Actions.create(</span><br><span class="line">    &lt;Scene key=&quot;root&quot; hideNavBar=&#123;true&#125;&gt;</span><br><span class="line">        &lt;Scene key=&quot;login&quot; component=&#123;LoginPage&#125; title=&quot;登录&quot; hideNavBar=&#123;true&#125; initial /&gt;</span><br><span class="line">    &lt;/Scene&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>备注：APP路由管理页面。</p>
+</blockquote>
+<p>6.App.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;;</span><br><span class="line">import AppRoot from &apos;./src/appRoot&apos;;</span><br><span class="line">import appStore from &apos;./src/appStore&apos;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&lt;&#123;&#125;&gt; &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125; </span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;Provider store=&#123;appStore&#125;&gt;</span><br><span class="line">            &lt;AppRoot /&gt;</span><br><span class="line">        &lt;/Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>备注：APP入口。</p>
+</blockquote>
+<h3 id="五-示例模块"><a href="#五-示例模块" class="headerlink" title="五.示例模块"></a>五.示例模块</h3><p>模块结构：<br><img src="http://upload-images.jianshu.io/upload_images/9814928-f21665431efa3f25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构"></p>
+<p>1.state定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Record, List &#125; from &apos;immutable&apos;;</span><br><span class="line"></span><br><span class="line">let authState = Record(&#123;</span><br><span class="line">    isLogin:false</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default authState;</span><br></pre></td></tr></table></figure></p>
+<p>2.action定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import * as types from &apos;../../actionTypes&apos;;</span><br><span class="line"></span><br><span class="line">export function login(userName,password) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        type:types.LOGIN_SUCCESS</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.reducer定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import AuthState from &apos;./authState&apos;;</span><br><span class="line">import * as types from &apos;../../actionTypes&apos;;</span><br><span class="line">import Immutable, &#123; Record, List &#125; from &apos;immutable&apos;;</span><br><span class="line"></span><br><span class="line">const authState = new AuthState();</span><br><span class="line">export default function authReducer(state = authState, action) &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case types.LOGIN_SUCCESS:</span><br><span class="line">             return state.set(&apos;isLogin&apos;, true);</span><br><span class="line">        case types.LOGIN_FAILURE:</span><br><span class="line">             return state.set(&apos;isLogin&apos;, false);</span><br><span class="line">        default: </span><br><span class="line">             return state;</span><br><span class="line">    &#125;</span><br><span class="line">    return state;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.component定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; StyleSheet, Platform, TextInput, View, Dimensions, Text,ImageBackground, Image, TouchableOpacity &#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">export default class LoginComponent extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (         </span><br><span class="line">            &lt;ImageBackground source=&#123;require(&apos;../../../resource/login-background.jpg&apos;)&#125; resizeMode=&apos;stretch&apos; style=&#123;[styles.stretch,styles.center]&#125;&gt;               </span><br><span class="line">                &lt;Image source=&#123;require(&apos;../../../resource/logo.png&apos;)&#125; style=&#123;styles.logo&#125;/&gt;</span><br><span class="line">                &lt;TextInput placeholder=&apos;请输入您的用户名&apos; style=&#123;styles.input&#125;/&gt;</span><br><span class="line">                &lt;TextInput placeholder=&apos;请输入您的密码&apos; secureTextEntry=&#123;true&#125; style=&#123;styles.input&#125;/&gt;</span><br><span class="line">                &lt;TouchableOpacity style=&#123;[styles.btn,styles.center]&#125; onPress=&#123;this.props.onLogin&#125;&gt;</span><br><span class="line">                    &lt;Text style=&#123;styles.text&#125;&gt;登录&lt;/Text&gt;</span><br><span class="line">                &lt;/TouchableOpacity&gt;</span><br><span class="line">            &lt;/ImageBackground&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var &#123;height, width&#125; = Dimensions.get(&apos;window&apos;);</span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">    logo:&#123;</span><br><span class="line">        width:80,</span><br><span class="line">        height:80,</span><br><span class="line">        marginBottom:50</span><br><span class="line">    &#125;,</span><br><span class="line">    center:&#123;</span><br><span class="line">        alignItems: &apos;center&apos;,</span><br><span class="line">        justifyContent:&apos;center&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    stretch: &#123;</span><br><span class="line">        height:height,</span><br><span class="line">        width:width   </span><br><span class="line">    &#125;,</span><br><span class="line">    input:&#123;</span><br><span class="line">        height:30,</span><br><span class="line">        width:width*0.6,</span><br><span class="line">        padding:0,</span><br><span class="line">        borderBottomWidth:1,</span><br><span class="line">        borderBottomColor:&quot;#8ecbc1&quot;,</span><br><span class="line">        paddingLeft:20,</span><br><span class="line">        marginBottom:10</span><br><span class="line">    &#125;,</span><br><span class="line">    btn:&#123;</span><br><span class="line">        width:width*0.6,</span><br><span class="line">        backgroundColor:&quot;#8ecbc1&quot;,</span><br><span class="line">        height:32,</span><br><span class="line">        marginTop:20</span><br><span class="line">    &#125;,</span><br><span class="line">    text:&#123;</span><br><span class="line">        color:&quot;#fff&quot;,</span><br><span class="line">        fontSize:16</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>5.container定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import LoginComponent from &quot;../components/loginComponent&quot;</span><br><span class="line">import &#123; bindActionCreators &#125; from &apos;redux&apos;;</span><br><span class="line">import &#123; connect &#125; from &apos;react-redux&apos;;</span><br><span class="line">import * as authActions from &apos;../authActions&apos;;</span><br><span class="line"></span><br><span class="line">class LoginPage extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillReceiveProps(nextProps,nextState)&#123;</span><br><span class="line">        if(nextProps.isLogin)&#123;</span><br><span class="line">            alert(&quot;登录成功&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;LoginComponent onLogin=&#123;this.props.actions.login&#125;/&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        isLogin:state.auth.isLogin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapDispatchToProps(dispatch) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        actions: bindActionCreators(authActions, dispatch)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);</span><br></pre></td></tr></table></figure></p>
+<h3 id="六-参考资料"><a href="#六-参考资料" class="headerlink" title="六.参考资料"></a>六.参考资料</h3><h2 id="redux中文文档"><a href="#redux中文文档" class="headerlink" title="- redux中文文档"></a>- <a href="http://cn.redux.js.org/" target="_blank" rel="noopener">redux中文文档</a></h2><p>GIT源码地址：<a href="https://github.com/wangheng3751/react-native-demo" target="_blank" rel="noopener">react-native-demo</a>     分支名称：framework (git checkout framework)</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/01/21/abp/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzMwMi85ODU5">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>本博客用于对博主工作中遇到的一些问题及解决方案的记录和总结，便于自己以后查询也帮助一些遇到同样问题并且看到本博客的人解决问题!
+<div style="margin-bottom:10px">部分内容来源于网络，可能未注明出处，如有侵权，请联系博主删除，邮箱：<a target='_blank' href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KB4RGxkQHB0aEGhZWQZLR0U">wangheng3751@qq.com</a></div>
+<p>如有问题，可加入博主个人技术讨论QQ群：516032289</p>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/wangheng3751" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KB4RGxkQHB0aEGhZWQZLR0U" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="http://wpa.qq.com/msgrd?v=3&uin=693184528&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="https://jq.qq.com/?_wv=1027&k=5j2JBvV" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/成长日记/"><i class="fa" aria-hidden="true">成长日记</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/格言/"><i class="fa" aria-hidden="true">格言</i></a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/"><i class="fa" aria-hidden="true">二月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">10</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/React-Native/" style="font-size: 20px;">React-Native</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/人生感悟/" style="font-size: 10px;">人生感悟</a> <a href="/tags/幽默笑话/" style="font-size: 15px;">幽默笑话</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/95064c5d51c7" class="fa" target="_blank">我的简书</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    有恒则成
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
