@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>分类: 前端 | 有恒则成</title>
+<title>在使用vue+webpack模版创建的项目中使用font-awesome | 有恒则成</title>
 
 
     <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
@@ -117,137 +117,111 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="在使用vue+webpack模版创建的项目中使用font-awesome">
+            
+	            在使用vue+webpack模版创建的项目中使用font-awesome
+            
+        </h1>
+        <div class="post-meta">
     
-        前端 
     
-</h3>
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            vue
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/03/22</span>
+    </span>
+</div>
 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/03/22/vue-webpack-font-awesome/">在使用vue+webpack模版创建的项目中使用font-awesome</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年03月22日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                前言：最近使用vue+webpack进行一个小项目的开发，按照官方模版文档完成项目初始化后打算引入ont-awesome字体图标库进行使用，引入过程中遇到一些问题并解决，现记录如下。
-一开始进展很顺利，百度了基本用法后安装：
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>前言：最近使用vue+webpack进行一个小项目的开发，按照<a href="https://vuejs-templates.github.io/webpack/" target="_blank" rel="noopener">官方模版文档</a>完成项目初始化后打算引入ont-awesome字体图标库进行使用，引入过程中遇到一些问题并解决，现记录如下。</p>
+<p>一开始进展很顺利，百度了基本用法后安装：</p>
+<blockquote>
+<p>npm install font-awesome –save</p>
+</blockquote>
+<p>然后在main.js中引入：</p>
+<blockquote>
+<p>import ‘font-awesome/css/font-awesome.css’</p>
+</blockquote>
+<p>接下来就开始愉快的使用各种图标了：</p>
+<blockquote>
+<p><i class="fa fa-search"></i><br> <i class="fa fa-star"></i>   </p>
+</blockquote>
+<p>npm run dev   之后效果也如预期般顺利，这样的：<br><img src="https://upload-images.jianshu.io/upload_images/9814928-68b60ed6333916a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>然而，当我npm run build后生成dist文件夹，并部署之后发现情况改变了！<br><img src="https://upload-images.jianshu.io/upload_images/9814928-dcc7f433d98b8324.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>图标不见了！！</p>
+<p>经过一些调试之后发现是webpack打包之后生成的css文件对字体的引用路径有问题：url(static/fonts/…)应该是url(../static/fonts/…)这样才能正常。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-c085748a7b8e317f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>于是继续问伟大的度娘！<br>找到了一篇文章中午看到了曙光了（<a href="https://www.cnblogs.com/mybky/p/7098452.html" target="_blank" rel="noopener">原文连接</a>），正确的步骤应该如下：</p>
+<h3 id="1-安装依赖包"><a href="#1-安装依赖包" class="headerlink" title="1.安装依赖包"></a>1.安装依赖包</h3><blockquote>
+<p>npm install font-awesome-loader less less-loader css-loader style-loader file-loader font-awesome -save</p>
+</blockquote>
+<h3 id="2-配置font-awesome-loader"><a href="#2-配置font-awesome-loader" class="headerlink" title="2.配置font-awesome-loader"></a>2.配置font-awesome-loader</h3><p>打开项目目录build/webpack.base.conf配置font-awesome-loader如下：<br><img src="https://upload-images.jianshu.io/upload_images/9814928-ccbabb496357fdb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>开始运行npm run build，有一个错误来的措手不及！<br><img src="https://upload-images.jianshu.io/upload_images/9814928-b3a963c733de94aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>还好，根据错误提示运行安装一下node-sass，所以：</p>
+<h3 id="3-安装node-sass"><a href="#3-安装node-sass" class="headerlink" title="3.安装node-sass"></a>3.安装node-sass</h3><blockquote>
+<p>npm install node-sass@latest</p>
+</blockquote>
+<p>此时，再执行npm run build时终于看见梦寐以求的效果，打包成功了。部署后运行也成了。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-f5e9f827122bbe17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>至此，可以随意使用font-awesome图标库了！</p>
 
-npm...
-            </p> 
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
+            
         </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/02/02/react-native-redux-demo/">React-Native 开发篇一React-Native+Redux开发框架搭建</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年02月02日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                前言：从事react-native开发一年半的时间了，从最初的0.17版本开始接触react-native到现在的0.51稳定版，期间从一开始的看着官方文档自我摸索到后来的渐渐社区庞大，各种组件层出不穷，react-native虽然越...
-            </p> 
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/01/17/slide/">原生js+css 实现手机滑动显示隐藏按钮功能</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月17日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                前言：最近做项目的过程中遇到需要在列表上可以有“修改”和“删除”按钮的需求，但由于在移动端，手机界面较小，在显示了其他必须内容后再直接显示两个按钮的话会导致界面很臃肿，难以适应各个机型，所以考虑采用模拟一些手机APP的做法，首先隐藏按...
-            </p> 
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/01/12/take-picture/">html+css+js 实现拍照预览上传图片功能</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月12日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                前言：我们在做网页时经常会需要有上传图片的需求，可能是选择图片或者拍照上传，如果简单的使用 input type=”file” 这种方式虽然也能实现功能，但用户体验上可能会差了一些，所以本文记录了使用css+js实现图片选中后的预览及...
-            </p> 
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/01/09/mixpush/">React-Native 消息推送--Android混合推送</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月09日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                背景由于使用任何一种Android推送都很难在APP进程被杀死后收到推送，只有集成各厂商提供的系统级别推送才能完成此任务,故考虑小米、华为、魅族手机使用官方推送，其他手机使用个推推送！
-项目GitHub地址：
-https://gith...
-            </p> 
-        </div>
-    </article>
- 
-    <article class="post">
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/01/02/react-native-component/">React-Native 自定义Android原生组件--弹出提示框</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年01月02日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                特别说明：本文仅适合未接触过或不熟悉Android原生开发的React-Native新手开发者！
-背景：使用React-Native开发Android APP时，虽然React-Native已经自带弹出提示框组件Alert，但由于各大...
-            </p> 
-        </div>
-    </article>
- 
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/02/02/react-native-redux-demo/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzMwMi85ODU5">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
 
 
+    </div>
 
 
 
