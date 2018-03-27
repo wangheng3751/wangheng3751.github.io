@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>React-Native 开发篇一底部导航菜单 | 有恒则成</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+	<script type="text/javascript" src="https://tajs.qq.com/stats?sId=64969916" charset="UTF-8"></script>
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background:transparent url(https://github.com/wangheng3751/my-resources/blob/master/images/blog-banner.jpg?raw=true) no-repeat;background-size:cover"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 学问之道无穷，而总以有「恒」为主 </h2>
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/前端/"><i class="fa fa-fw "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/后端/"><i class="fa fa-fw "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/格言/"><i class="fa fa-fw "></i>格言</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/成长日记/"><i class="fa fa-fw "></i>成长日记</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="React-Native 开发篇一底部导航菜单">
+            
+	            React-Native 开发篇一底部导航菜单
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            react-native
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/03/27</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>接着上一篇【<a href="https://wangheng3751.github.io/2018/02/02/react-native-redux-demo/" target="_blank" rel="noopener">React-Native 开发篇一React-Native+Redux开发框架搭建</a>】，本文记录使用react-native-router-flux组件实现rn开发时最常见的底部导航菜单！</p>
+<p>实现效果如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9814928-5a4054b08e3482ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果预览"></p>
+<h3 id="1-组件安装"><a href="#1-组件安装" class="headerlink" title="1.组件安装"></a>1.组件安装</h3><blockquote>
+<p>npm install react-native-router-flux –save</p>
+</blockquote>
+<h3 id="2-定义菜单图标及文字（tabIcon-js）"><a href="#2-定义菜单图标及文字（tabIcon-js）" class="headerlink" title="2.定义菜单图标及文字（tabIcon.js）"></a>2.定义菜单图标及文字（tabIcon.js）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; View, Image, Text, StyleSheet,Dimensions &#125; from &apos;react-native&apos;;</span><br><span class="line">class TabIcon extends Component &#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);       </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render()&#123;</span><br><span class="line">        let selected=this.props.focused;</span><br><span class="line">        let data=&#123;</span><br><span class="line">            home:&#123;</span><br><span class="line">                title:&quot;首页&quot;,</span><br><span class="line">                icon:!selected?require(&quot;../resource/images/home.png&quot;):require(&quot;../resource/images/home_selected.png&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            movies:&#123;</span><br><span class="line">                title:&quot;电影&quot;,</span><br><span class="line">                icon:!selected?require(&quot;../resource/images/movies.png&quot;):require(&quot;../resource/images/movies_selected.png&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            theaters:&#123;</span><br><span class="line">                title:&quot;影院&quot;,</span><br><span class="line">                icon:!selected?require(&quot;../resource/images/theater.png&quot;):require(&quot;../resource/images/theater_selected.png&quot;)</span><br><span class="line">            &#125;,</span><br><span class="line">            me:&#123;</span><br><span class="line">                title:&quot;我&quot;,</span><br><span class="line">                icon:!selected?require(&quot;../resource/images/me.png&quot;):require(&quot;../resource/images/me_selected.png&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      let param=data[this.props.navigation.state.key];</span><br><span class="line">      return  &lt;View style=&#123;styles.tabbarContainer&#125;&gt;</span><br><span class="line">                &lt;Image style=&#123;&#123; width: 25, height: 25,resizeMode:&apos;contain&apos; &#125;&#125; source=&#123;param.icon&#125; /&gt;</span><br><span class="line">                &lt;Text style=&#123;[styles.tabbarItem,selected&amp;&amp;&#123;color:&apos;#F08519&apos;&#125;]&#125;&gt;&#123;param.title&#125;&lt;/Text&gt;</span><br><span class="line">              &lt;/View&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">    tabbarContainer:&#123;</span><br><span class="line">      flex:1,</span><br><span class="line">      alignItems:&quot;center&quot;,</span><br><span class="line">      justifyContent:&quot;center&quot;,</span><br><span class="line">      width:Dimensions.get(&apos;window&apos;).width/4</span><br><span class="line">    &#125;,</span><br><span class="line">    tabbarItem:&#123;  </span><br><span class="line">      marginTop:5,    </span><br><span class="line">      textAlign:&quot;center&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = TabIcon;</span><br></pre></td></tr></table></figure>
+<p>注意事项：</p>
+<ul>
+<li>定义菜单标题和图标的data数据的key（即例子中的home/movies/theaters/me）和步骤3中每一个Scene的key一一对应；</li>
+<li>判断菜单是否被选中this.props.focused在老版本的react-native-router-flux使用this.props.selected;</li>
+<li>取当前菜单this.props.navigation.state.key在老版本的react-native-router-flux使用this.props.sceneKey。<h3 id="3-定义底部导航栏（appRoot-js）"><a href="#3-定义底部导航栏（appRoot-js）" class="headerlink" title="3.定义底部导航栏（appRoot.js）"></a>3.定义底部导航栏（appRoot.js）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;;</span><br><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line">import &#123;</span><br><span class="line">    View,</span><br><span class="line">    Text,</span><br><span class="line">    BackAndroid,</span><br><span class="line">    StyleSheet</span><br><span class="line">&#125; from &apos;react-native&apos;;</span><br><span class="line">import &#123; Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst &#125; from &apos;react-native-router-flux&apos;;</span><br><span class="line">import &#123; connect &#125; from &apos;react-redux&apos;;</span><br><span class="line">import LoginPage from &apos;./modules/auth/containers/loginPage&apos;;</span><br><span class="line">import HomeIndex from &apos;./modules/home/containers/indexPage&apos;;</span><br><span class="line">import TabIcon from &apos;./common/tabIcon&apos;;</span><br><span class="line"></span><br><span class="line">class AppRoot extends Component &#123;</span><br><span class="line">    static propTypes = &#123;</span><br><span class="line">        dispatch: PropTypes.func</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    createReducer(params) &#123;</span><br><span class="line">        const defaultReducer = Reducer(params);</span><br><span class="line">        return (state, action) =&gt; &#123;</span><br><span class="line">          this.props.dispatch(action);</span><br><span class="line">          return defaultReducer(state, action);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onExitApp()&#123;</span><br><span class="line">        BackAndroid.exitApp();</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;Router onExitApp=&#123;this.onExitApp&#125; </span><br><span class="line">                    createReducer=&#123; this.createReducer.bind(this) &#125;</span><br><span class="line">                    scenes=&#123; scenes &#125;</span><br><span class="line">             &gt;          </span><br><span class="line">            &lt;/Router &gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const styles = StyleSheet.create(&#123;</span><br><span class="line">    tabBarStyle: &#123;</span><br><span class="line">        backgroundColor: &apos;#fff&apos;,</span><br><span class="line">        height:64</span><br><span class="line">    &#125;,</span><br><span class="line">    tabBarSelectedItemStyle: &#123;</span><br><span class="line">        backgroundColor: &apos;#fff&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    titleStyle: &#123;</span><br><span class="line">        color: &apos;#fff&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const scenes = Actions.create(</span><br><span class="line">    &lt;Scene key=&quot;root&quot; hideNavBar=&#123;true&#125;&gt;</span><br><span class="line">        &lt;Scene key=&quot;login&quot; component=&#123;LoginPage&#125; title=&quot;登录&quot; hideNavBar=&#123;true&#125; /&gt;</span><br><span class="line">        &lt;Scene key=&quot;tabbar&quot;</span><br><span class="line">                initial</span><br><span class="line">                tabs=&#123;true&#125;</span><br><span class="line">                tabBarPosition=&quot;bottom&quot;</span><br><span class="line">                showLabel=&#123;false&#125;</span><br><span class="line">                tabBarStyle=&#123;styles.tabBarStyle&#125;</span><br><span class="line">                tabBarSelectedItemStyle=&#123;styles.tabBarSelectedItemStyle&#125;</span><br><span class="line">                titleStyle=&#123;styles.titleStyle&#125;&gt;</span><br><span class="line">                &lt;Scene key=&quot;home&quot;</span><br><span class="line">                    hideNavBar=&#123;true&#125;</span><br><span class="line">                    component=&#123;HomeIndex&#125;</span><br><span class="line">                    icon=&#123;TabIcon&#125;</span><br><span class="line">                    titleStyle=&#123;styles.titleStyle&#125;/&gt;</span><br><span class="line"></span><br><span class="line">                &lt;Scene key=&quot;movies&quot;</span><br><span class="line">                    hideNavBar=&#123;true&#125;</span><br><span class="line">                    component=&#123;HomeIndex&#125;      </span><br><span class="line">                    icon=&#123;TabIcon&#125;                </span><br><span class="line">                    titleStyle=&#123;styles.titleStyle&#125; /&gt;</span><br><span class="line"></span><br><span class="line">                &lt;Scene key=&quot;theaters&quot;</span><br><span class="line">                    hideNavBar=&#123;true&#125;</span><br><span class="line">                    component=&#123;HomeIndex&#125;                           </span><br><span class="line">                    icon=&#123;TabIcon&#125;</span><br><span class="line">                    titleStyle=&#123;styles.titleStyle&#125; /&gt;</span><br><span class="line"></span><br><span class="line">                &lt;Scene key=&quot;me&quot;</span><br><span class="line">                    hideNavBar=&#123;true&#125;</span><br><span class="line">                    component=&#123;LoginPage&#125;                    </span><br><span class="line">                    icon=&#123;TabIcon&#125;</span><br><span class="line">                    titleStyle=&#123;styles.titleStyle&#125; /&gt;</span><br><span class="line">            &lt;/Scene&gt;</span><br><span class="line">    &lt;/Scene&gt;</span><br><span class="line">)</span><br><span class="line">export default connect()(AppRoot);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>引入步骤2中定义的tabIcon(import TabIcon from ‘./common/tabIcon’)；</li>
+<li>定义一个Scene使其initial={true}  tabs={true}作为底部菜单容器；</li>
+<li>定义若干（一舨2-4个）个菜单项，使其key与tabIcon中的key相对于，设置icon={TabIcon}, component为该菜单选中时默认的组件。</li>
+</ul>
+<p>此外，由于此示例基于redux，为完整项目结构，还需做以下处理：</p>
+<ul>
+<li><p>定义dispatch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import PropTypes from &apos;prop-types&apos;;</span><br><span class="line">...</span><br><span class="line">class AppRoot extends Component &#123;</span><br><span class="line">  static propTypes = &#123;</span><br><span class="line">        dispatch: PropTypes.func</span><br><span class="line">   &#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用connect连接React组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default connect()(AppRoot);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>GIT源码地址：<a href="https://github.com/wangheng3751/react-native-demo" target="_blank" rel="noopener">react-native-demo</a>     分支名称：tabbar</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/03/27/rn-no-bundle-url/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+    
+    
+        <a href="/2018/03/22/vue-webpack-font-awesome/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzMwMi85ODU5">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <p>本博客用于对博主工作中遇到的一些问题及解决方案的记录和总结，便于自己以后查询也帮助一些遇到同样问题并且看到本博客的人解决问题!
+<div style="margin-bottom:10px">部分内容来源于网络，可能未注明出处，如有侵权，请联系博主删除，邮箱：<a target='_blank' href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KB4RGxkQHB0aEGhZWQZLR0U">wangheng3751@qq.com</a></div>
+<p>如有问题，可加入博主个人技术讨论QQ群：516032289</p>
+</p>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/wangheng3751" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=KB4RGxkQHB0aEGhZWQZLR0U" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="http://wpa.qq.com/msgrd?v=3&uin=693184528&site=qq&menu=yes" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="https://jq.qq.com/?_wv=1027&k=5j2JBvV" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/前端/"><i class="fa" aria-hidden="true">前端</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/成长日记/"><i class="fa" aria-hidden="true">成长日记</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/格言/"><i class="fa" aria-hidden="true">格言</i></a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/"><i class="fa" aria-hidden="true">二月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">10</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/About-Me/" style="font-size: 10px;">About Me</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/HTML/" style="font-size: 15px;">HTML</a> <a href="/tags/React-Native/" style="font-size: 20px;">React-Native</a> <a href="/tags/Selenium/" style="font-size: 10px;">Selenium</a> <a href="/tags/react-native/" style="font-size: 15px;">react-native</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/人生感悟/" style="font-size: 10px;">人生感悟</a> <a href="/tags/幽默笑话/" style="font-size: 15px;">幽默笑话</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友情链接</h3>
+        <div class="content friends-link">
+        
+            <a href="https://www.jianshu.com/u/95064c5d51c7" class="fa" target="_blank">我的简书</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2018
+                </span> | 
+                <span>
+                    有恒则成
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

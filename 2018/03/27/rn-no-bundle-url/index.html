@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>归档 | 有恒则成</title>
+<title>react-native错误处理--No bundle URL present Make sure you’re running a packager server or have included a .jsbundle file | 有恒则成</title>
 
 
     <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
@@ -117,45 +117,94 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div id="main">
-  <div id="post-list">
-    <ul class="archives-post-list">
-    	<h1 class="info">年 月</h1>
-        
-          <li class="post-items" _href="/2018/01/06/joke-coder/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/06/joke-coder/"> 程序员专用经典语录—看完笑一阵可以，千万不要死循环哦！ </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/02/react-native-component/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/02/react-native-component/"> React-Native 自定义Android原生组件--弹出提示框 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/02/lived/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/02/lived/"> 人生如梦，岁月无情 </a>
-            </h3>  
-          </li>
-        
-          <li class="post-items" _href="/2018/01/01/blog-start/">
-            <h3 class="post-item-title">
-            	<a href="/2018/01/01/blog-start/"> 写在博客所有文章之前 </a>
-            </h3>  
-          </li>
-        
-    </ul>
-  </div>
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="react-native错误处理--No bundle URL present Make sure you’re running a packager server or have included a .jsbundle file">
+            
+	            react-native错误处理--No bundle URL present Make sure you’re running a packager server or have included a .jsbundle file
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <span>前端</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            react-native
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/03/27</span>
+    </span>
 </div>
 
-    <nav class="pagination" role="navigation">
-        <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/archives/"><i class='fa fa-angle-left'></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>错误信息：No bundle URL present Make sure you’re running a packager server or have included a .jsbundle file。</p>
+<p>详情如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9814928-7c9f2c0006b1eaf5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>我遇到此问题的原因：<br>在运行项目之前已经运行着另外一个项目，当前APP在启动时会自动去localhost://8081获取资源，即.jsbundle，当启动APP前已经有另外一个APP在运行时则当前正在运行的packager server并不是当前项目，所以获取到的资源就会发生错乱而导致出现该问题！</p>
+<p>其实本来是很容易解决的问题，但有时候会忘记已经启动了另外一个项目而忘记从这方面考虑，所以纠结好久才发现问题所在。</p>
+<p>关闭上一个项目的packager server重启当前项目目录的packager server并且reload js不能解决此问题！</p>
+<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>保证当前运行的packager server是当前项目或者直接关闭当前运行的packager server，卸载APP重新运行react-native run-ios！</p>
+<p>如果你遇到同样的问题却不能用此办法解决，可以参考另外一个同学的解决办法，<a href="https://blog.csdn.net/ghoiufyia/article/details/78783870" target="_blank" rel="noopener">链接地址</a> 。</p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
+            
         </div>
-    </nav>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/03/27/react-native-tabbar/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzMwMi85ODU5">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
 
 
 
