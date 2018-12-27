@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>Net开源框架ABP初探（一）— 项目初始化 | 有恒则成</title>
+<title>归档：2018/12 | 有恒则成</title>
 
 
     <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
@@ -117,112 +117,21 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="Net开源框架ABP初探（一）— 项目初始化">
-            
-	            Net开源框架ABP初探（一）— 项目初始化
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <span>后端</span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            C#
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/07/18</span>
-    </span>
-</div>
-
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <h1 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h1><h3 id="进入ABP官网-点击“Get-started”"><a href="#进入ABP官网-点击“Get-started”" class="headerlink" title="进入ABP官网,点击“Get started”:"></a>进入<a href="https://aspnetboilerplate.com/" target="_blank" rel="noopener">ABP官网</a>,点击“Get started”:</h3><p><img src="https://upload-images.jianshu.io/upload_images/9814928-f28fcb544d1758e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Get started"></p>
-<h3 id="选择想要创建的项目类型："><a href="#选择想要创建的项目类型：" class="headerlink" title="选择想要创建的项目类型："></a>选择想要创建的项目类型：</h3><p><img src="https://upload-images.jianshu.io/upload_images/9814928-760cf716674161a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="templates"></p>
-<blockquote>
-<p>此处我选择ASP.NET Core 2.x + Multi Page Web Application(多页面，标准的.net mvc模式)，然后选中“include login,register,user,role and tenant management pages”(选中后创建的项目会默认包含登录，注册，角色和多组合模块，此选项可选可不选，一般系统都需要这些模块，选中可以节省一些自己开发的时间，同时新手可以参照这些模块进行开发，能快速了解此框架的一些用法)。</p>
-</blockquote>
-<h3 id="创建完成"><a href="#创建完成" class="headerlink" title="创建完成"></a>创建完成</h3><p>输入验证码后点击“create my project”项目创建完成并自动下载到本地。</p>
-<h1 id="2-配置项目"><a href="#2-配置项目" class="headerlink" title="2.配置项目"></a>2.配置项目</h1><p>打开 <a href="https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Core" target="_blank" rel="noopener">开发文档</a>，即可看到详细的开发说明。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-a2137dbaa22825ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="使用vs2017-v15-3-5以上版本打开项目解决方案。"><a href="#使用vs2017-v15-3-5以上版本打开项目解决方案。" class="headerlink" title="使用vs2017 v15.3.5以上版本打开项目解决方案。"></a>使用vs2017 v15.3.5以上版本打开项目解决方案。</h3><blockquote>
-<p>此处应该是因为我选择了 .NET CORE 2.x的原因,选择其他框架应该不需要2017也行。</p>
-</blockquote>
-<h3 id="还原项目依赖包"><a href="#还原项目依赖包" class="headerlink" title="还原项目依赖包"></a>还原项目依赖包</h3><blockquote>
-<p>打开项目后自动还原，如果没自动则手动使用NuGet还原。</p>
-</blockquote>
-<h3 id="把Web-Mvc项目设为默认启动项目"><a href="#把Web-Mvc项目设为默认启动项目" class="headerlink" title="把Web.Mvc项目设为默认启动项目"></a>把Web.Mvc项目设为默认启动项目</h3><blockquote>
-<p>之后还原数据库时会需要该项目里配置的链接字符串。</p>
-</blockquote>
-<h3 id="配置数据库连接字符串"><a href="#配置数据库连接字符串" class="headerlink" title="配置数据库连接字符串"></a>配置数据库连接字符串</h3><blockquote>
-<p>.NET CORE程序的链接字符串在appsettings.json中配置。</p>
-</blockquote>
-<h3 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h3><ul>
-<li>打开“工具”-&gt;“NuGet包管理器”-&gt;“程序包管理控制台”。</li>
-<li>选择“EntityFrameworkCore”项目为默认项目。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-9f125de849a86fc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
-<li>执行“Update-Database”命令。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-dced2378cbb019e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>执行完成后可以打开数据库看到已经自动创建了数据库和相应的表。<h1 id="3-运行项目"><a href="#3-运行项目" class="headerlink" title="3.运行项目"></a>3.运行项目</h1>运行“Web.Mvc”项目，即可看到如下登录页面。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-d73e00c8384c0180.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>输入默认的用户名：admin，密码：123qwe即可进入系统。<h3 id="至此，项目初始化完成。"><a href="#至此，项目初始化完成。" class="headerlink" title="至此，项目初始化完成。"></a>至此，项目初始化完成。</h3>初探abp，感觉博大精深，后续会继续记录和分享一些个人使用过程中的一些探索和结果。和广大abp使用者一起努力，共勉…..</li>
-</ul>
-
-    </div>
-
-    <div class="post-footer">   
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://wangheng3751.github.io/" target="_blank">有恒则成</a>
-            
-        </div>
-        <div>
-            
-        </div>  
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2018/07/18/abp-db/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
-    
-    
-        <a href="/2018/04/04/rn-signin-with-facebook/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
-    
-</div>
-
-
-    <div id="comments">
+                <main class="col-md-8 main-content ">
+                    <div id="main">
+  <div id="post-list">
+    <ul class="archives-post-list">
+    	<h1 class="info">2018年 12月</h1>
         
-	
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzMwMi85ODU5">
-  <script type="text/javascript">
-     (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
-         if (typeof LivereTower === 'function') { return; }
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-         e.parentNode.insertBefore(j, e);
-     })(document, 'script');
-  </script>
+          <li class="post-items" _href="/2018/12/27/abp-mysql/">
+            <h3 class="post-item-title">
+            	<a href="/2018/12/27/abp-mysql/"> .Net开源框架ABP初探（三）—  使用Mysql数据库 </a>
+            </h3>  
+          </li>
+        
+    </ul>
+  </div>
 </div>
-
-
-    </div>
 
 
 

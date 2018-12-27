@@ -24,7 +24,7 @@
     <!--Title-->
 
 
-<title>Net开源框架ABP初探（一）— 项目初始化 | 有恒则成</title>
+<title>.Net开源框架ABP初探（三）—  使用Mysql数据库 | 有恒则成</title>
 
 
     <link rel="alternate" href="/atom.xml" title="有恒则成" type="application/atom+xml">
@@ -121,9 +121,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Net开源框架ABP初探（一）— 项目初始化">
+        <h1 id=".Net开源框架ABP初探（三）—  使用Mysql数据库">
             
-	            Net开源框架ABP初探（一）— 项目初始化
+	            .Net开源框架ABP初探（三）—  使用Mysql数据库
             
         </h1>
         <div class="post-meta">
@@ -147,7 +147,7 @@
     
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/07/18</span>
+        <span class="date-meta">2018/12/27</span>
     </span>
 </div>
 
@@ -156,29 +156,42 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h1><h3 id="进入ABP官网-点击“Get-started”"><a href="#进入ABP官网-点击“Get-started”" class="headerlink" title="进入ABP官网,点击“Get started”:"></a>进入<a href="https://aspnetboilerplate.com/" target="_blank" rel="noopener">ABP官网</a>,点击“Get started”:</h3><p><img src="https://upload-images.jianshu.io/upload_images/9814928-f28fcb544d1758e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Get started"></p>
-<h3 id="选择想要创建的项目类型："><a href="#选择想要创建的项目类型：" class="headerlink" title="选择想要创建的项目类型："></a>选择想要创建的项目类型：</h3><p><img src="https://upload-images.jianshu.io/upload_images/9814928-760cf716674161a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="templates"></p>
+        <h1 id="本文针对abp-net-core模版项目。"><a href="#本文针对abp-net-core模版项目。" class="headerlink" title="本文针对abp .net core模版项目。"></a>本文针对abp .net core模版项目。</h1><p>ABP 项目初始化完成后默认使用的是SQL SERVER数据库，如果想使用MYSQL数据库，需要进行一些配置。</p>
+<h1 id="1-添加mysql程序包"><a href="#1-添加mysql程序包" class="headerlink" title="1.添加mysql程序包"></a>1.添加mysql程序包</h1><p>在.EntityFrameworkCore项目下添加程序包：<br>EntityFrameworkCore.MySql和EntityFrameworkCore.MySql.Design。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/9814928-33d09c011b5931f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="2-修改源代码"><a href="#2-修改源代码" class="headerlink" title="2.修改源代码"></a>2.修改源代码</h1><p>修改EntityFrameworkCore项目下xxxxDbContextConfigurer.cs文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void Configure(DbContextOptionsBuilder&lt;OSMSDbContext&gt; builder, string connectionString)</span><br><span class="line"> &#123;</span><br><span class="line">      //builder.UseSqlServer(connectionString);</span><br><span class="line">      builder.UseMySql(connectionString);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> public static void Configure(DbContextOptionsBuilder&lt;OSMSDbContext&gt; builder, DbConnection connection)</span><br><span class="line">  &#123;</span><br><span class="line">      //builder.UseSqlServer(connection);</span><br><span class="line">       builder.UseMySql(connection);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-修改数据库连接字符串"><a href="#3-修改数据库连接字符串" class="headerlink" title="3.修改数据库连接字符串"></a>3.修改数据库连接字符串</h1><p>修改.Migrator和.Mvc项目下的appsettings.json文件的下数据库配置信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;ConnectionStrings&quot;: &#123;</span><br><span class="line">    //&quot;Default&quot;: &quot;Server=localhost; Database=xxxDb; Trusted_Connection=True;&quot;</span><br><span class="line">    &quot;Default&quot;: &quot;Server=localhost; Database=xxxDb; User ID=root; Password=*****; port=3306&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="4-生成迁移文件"><a href="#4-生成迁移文件" class="headerlink" title="4.生成迁移文件"></a>4.生成迁移文件</h1><h4 id="Windows系统下的操作："><a href="#Windows系统下的操作：" class="headerlink" title="Windows系统下的操作："></a>Windows系统下的操作：</h4><p>打开VS的包管理控制台，并在包管理控制台中选择 .EntityFrameworkCore 项目作为默认项目。然后在控制台中执行下面命令生成迁移文件：</p>
 <blockquote>
-<p>此处我选择ASP.NET Core 2.x + Multi Page Web Application(多页面，标准的.net mvc模式)，然后选中“include login,register,user,role and tenant management pages”(选中后创建的项目会默认包含登录，注册，角色和多组合模块，此选项可选可不选，一般系统都需要这些模块，选中可以节省一些自己开发的时间，同时新手可以参照这些模块进行开发，能快速了解此框架的一些用法)。</p>
+<p>Add-Migration “AbpZero_Initial”</p>
 </blockquote>
-<h3 id="创建完成"><a href="#创建完成" class="headerlink" title="创建完成"></a>创建完成</h3><p>输入验证码后点击“create my project”项目创建完成并自动下载到本地。</p>
-<h1 id="2-配置项目"><a href="#2-配置项目" class="headerlink" title="2.配置项目"></a>2.配置项目</h1><p>打开 <a href="https://aspnetboilerplate.com/Pages/Documents/Zero/Startup-Template-Core" target="_blank" rel="noopener">开发文档</a>，即可看到详细的开发说明。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-a2137dbaa22825ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="使用vs2017-v15-3-5以上版本打开项目解决方案。"><a href="#使用vs2017-v15-3-5以上版本打开项目解决方案。" class="headerlink" title="使用vs2017 v15.3.5以上版本打开项目解决方案。"></a>使用vs2017 v15.3.5以上版本打开项目解决方案。</h3><blockquote>
-<p>此处应该是因为我选择了 .NET CORE 2.x的原因,选择其他框架应该不需要2017也行。</p>
+<p>然后使用下面命令来创建数据库：</p>
+<blockquote>
+<p>Update-Database</p>
 </blockquote>
-<h3 id="还原项目依赖包"><a href="#还原项目依赖包" class="headerlink" title="还原项目依赖包"></a>还原项目依赖包</h3><blockquote>
-<p>打开项目后自动还原，如果没自动则手动使用NuGet还原。</p>
+<h4 id="Mac系统下的操作："><a href="#Mac系统下的操作：" class="headerlink" title="Mac系统下的操作："></a>Mac系统下的操作：</h4><ul>
+<li>在终端打开.EntityFrameworkCore项目：右键项目=》工具=》在终端打开；</li>
+<li>执行以下命令生产迁移文件；<blockquote>
+<p>dotnet ef migrations add “AbpZero_Initial”</p>
 </blockquote>
-<h3 id="把Web-Mvc项目设为默认启动项目"><a href="#把Web-Mvc项目设为默认启动项目" class="headerlink" title="把Web.Mvc项目设为默认启动项目"></a>把Web.Mvc项目设为默认启动项目</h3><blockquote>
-<p>之后还原数据库时会需要该项目里配置的链接字符串。</p>
+</li>
+<li>执行以下命令完成数据库创建<blockquote>
+<p>dotnet ef database update</p>
 </blockquote>
-<h3 id="配置数据库连接字符串"><a href="#配置数据库连接字符串" class="headerlink" title="配置数据库连接字符串"></a>配置数据库连接字符串</h3><blockquote>
-<p>.NET CORE程序的链接字符串在appsettings.json中配置。</p>
-</blockquote>
-<h3 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h3><ul>
-<li>打开“工具”-&gt;“NuGet包管理器”-&gt;“程序包管理控制台”。</li>
-<li>选择“EntityFrameworkCore”项目为默认项目。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-9f125de849a86fc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
-<li>执行“Update-Database”命令。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-dced2378cbb019e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>执行完成后可以打开数据库看到已经自动创建了数据库和相应的表。<h1 id="3-运行项目"><a href="#3-运行项目" class="headerlink" title="3.运行项目"></a>3.运行项目</h1>运行“Web.Mvc”项目，即可看到如下登录页面。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-d73e00c8384c0180.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>输入默认的用户名：admin，密码：123qwe即可进入系统。<h3 id="至此，项目初始化完成。"><a href="#至此，项目初始化完成。" class="headerlink" title="至此，项目初始化完成。"></a>至此，项目初始化完成。</h3>初探abp，感觉博大精深，后续会继续记录和分享一些个人使用过程中的一些探索和结果。和广大abp使用者一起努力，共勉…..</li>
+</li>
+</ul>
+<p>顺利完成收可在数据库中查看数据库是否创建成功。</p>
+<h1 id="5-运行项目"><a href="#5-运行项目" class="headerlink" title="5.运行项目"></a>5.运行项目</h1><p>设置.mvc项目为启动项目运行，网站运行后输入账号admin，密码123qwe即可登陆。<br><img src="https://upload-images.jianshu.io/upload_images/9814928-c89825cb01bb2cc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><ol>
+<li><a href="http://www.sohu.com/a/213814486_468635" target="_blank" rel="noopener">ABP .Net Core Entity Framework迁移使用MySql数据库</a></li>
+</ol>
+</li>
+<li><ol start="2">
+<li><a href="https://segmentfault.com/q/1010000011454619/a-1020000011647459" target="_blank" rel="noopener">visual studio for Mac如何执行nuget命令？</a></li>
+</ol>
+</li>
 </ul>
 
     </div>
@@ -197,10 +210,8 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/07/18/abp-db/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
-    
-        <a href="/2018/04/04/rn-signin-with-facebook/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+        <a href="/2018/07/18/abp-db/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
 </div>
 
